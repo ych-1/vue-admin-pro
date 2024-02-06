@@ -1,5 +1,6 @@
 import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
+import { ResponseCodeEnum } from '@/enums/http-enum.ts'
 
 const service = axios.create({
   baseURL: '/api',
@@ -18,9 +19,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const data = response.data
-    if (data.code !== 200)
-      return Promise.reject(new Error(data.message))
-
+    const code = data.code as keyof typeof ResponseCodeEnum
+    if (code !== 200) {
+      const message = ResponseCodeEnum[code] || data.message as string
+      window.$message?.error(message)
+      return Promise.reject(new Error(message))
+    }
     return data
   },
   (error: AxiosError) => {

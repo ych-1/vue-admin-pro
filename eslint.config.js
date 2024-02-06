@@ -7,4 +7,7 @@ export default antfu({
     'types/auto-generated.d.ts',
     'types/components.d.ts',
   ],
+  rules: {
+    'no-console': 'off',
+  },
 })

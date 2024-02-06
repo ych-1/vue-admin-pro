@@ -19,5 +19,4 @@ async function bootstrap() {
   app.mount('#app')
 }
 
-// eslint-disable-next-line no-console
 bootstrap().then(() => console.log('App is ready!'))

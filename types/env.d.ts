@@ -6,3 +6,11 @@ declare module '*.vue' {
   const component: ReturnType<typeof defineComponent>
   export default component
 }
+
+interface ImportMetaEnv {
+  VI_APP_TITLE: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}

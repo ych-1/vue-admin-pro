@@ -1,19 +1,29 @@
 <script setup lang="ts">
-import { deleteDemoApi, getDemoApi, postDemoApi, putDemoApi } from '@/api/system/demo.ts'
+import { useUserStore } from '@/stores/user.ts'
 
+const { hasPermission } = usePermission()
+const userStore = useUserStore()
 async function onClick() {
-  getDemoApi()
-  putDemoApi()
-  postDemoApi()
-  deleteDemoApi()
+  userStore.userInfo.permissions = ['system:demo:delete']
+  console.log(hasPermission('system:demo:delete'))
 }
 </script>
 
 <template>
-  <div class="bg-red w-200px h-200px" @click="onClick">
-    测试
-  </div>
-  <router-view />
+  <n-config-provider
+    :abstract="true"
+    :date-locale="null"
+    :inline-theme-disabled="true"
+    :locale="null"
+    :preflight-style-disabled="true"
+    :theme="null"
+    :theme-overrides="null"
+  >
+    <n-global-style />
+    <app-provider>
+      <router-view />
+    </app-provider>
+  </n-config-provider>
 </template>
 
 <style scoped>
