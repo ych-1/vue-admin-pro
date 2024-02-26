@@ -1,23 +1,17 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user.ts'
+import { useAppStore } from '@/stores/app.ts'
 
-const { hasPermission } = usePermission()
-const userStore = useUserStore()
-async function onClick() {
-  userStore.userInfo.permissions = ['system:demo:delete']
-  console.log(hasPermission('system:demo:delete'))
-}
+const { theme, locale, dateLocale, themeOverrides } = storeToRefs(useAppStore())
 </script>
 
 <template>
   <n-config-provider
     :abstract="true"
-    :date-locale="null"
+    :date-locale="dateLocale"
     :inline-theme-disabled="true"
-    :locale="null"
-    :preflight-style-disabled="true"
-    :theme="null"
-    :theme-overrides="null"
+    :locale="locale"
+    :theme="theme"
+    :theme-overrides="themeOverrides"
   >
     <n-global-style />
     <app-provider>

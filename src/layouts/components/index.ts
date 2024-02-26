@@ -1,19 +1,19 @@
-import Main from './Main/index.vue'
+import AppMain from './AppMain/index.vue'
 import Footer from './Footer/index.vue'
 import Header from './Header/index.vue'
 import Logo from './Logo/index.vue'
 import Menu from './Menu/index.vue'
 import Sider from './Sider/index.vue'
-import Tabs from './Tabs/index.vue'
-import Layout from './Layout/index.vue'
+import MultiTab from './MultiTab/index.vue'
+import Breadcrumb from './Header/Breadcrumb.vue'
 
 export {
-  Main,
+  AppMain,
   Footer,
   Header,
   Logo,
   Menu,
   Sider,
-  Tabs,
-  Layout,
+  MultiTab,
+  Breadcrumb,
 }

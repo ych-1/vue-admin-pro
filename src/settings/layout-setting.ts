@@ -3,7 +3,19 @@ import { useStorage } from '@vueuse/core'
 export const STORAGE_KEY_LAYOUT_SETTING = 'LAYOUT_SETTING'
 
 export interface LayoutSetting {
+  layout: 'side' | 'top' | 'mix'
+  dark: boolean | 'auto'
+  bordered: boolean
   collapsed: boolean
+  showTrigger: boolean | 'bar' | 'arrow-circle'
+  siderWidth: number
+  siderCollapsedWidth: number
+  headerHeight: number
+  headerFixed: boolean
+  contentMargin: number
+  tabsHeight: number
+  tabsFixed: boolean
+  footerHeight: number
   show: {
     logo: boolean
     setting: boolean
@@ -11,30 +23,23 @@ export interface LayoutSetting {
     breadcrumb: boolean
     tabs: boolean
   }
-  sider: {
-    width: number
-    collapsedWidth: number
-  }
-  header: {
-    theme: string
-    fixed: boolean
-    height: number
-  }
-  content: {
-    margin: number
-  }
-  tabs: {
-    height: number
-    fixed: boolean
-  }
-  footer: {
-    theme: string
-    fixed: boolean
-    height: number
-  }
 }
 
-export const defaultSetting: Partial<LayoutSetting> = {
+export const defaultSetting: LayoutSetting = {
+  layout: 'mix',
+  dark: false,
+  bordered: true,
+  collapsed: false,
+  contentMargin: 12,
+  footerHeight: 40,
+  headerFixed: true,
+  showTrigger: 'bar',
+  headerHeight: 60,
+  show: { breadcrumb: true, logo: true, search: true, setting: true, tabs: true },
+  siderCollapsedWidth: 60,
+  siderWidth: 220,
+  tabsFixed: true,
+  tabsHeight: 40,
 }
 
-export const layoutSetting = useStorage(STORAGE_KEY_LAYOUT_SETTING, defaultSetting)
+export default useStorage(STORAGE_KEY_LAYOUT_SETTING, defaultSetting)
