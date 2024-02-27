@@ -15,12 +15,14 @@ const styles = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <n-layout-header :bordered="bordered" :style="styles" class="flex items-center">
-    <slot />
-    <div class="ml-auto" />
-    <HeaderActions />
-    <UserAvatar />
-  </n-layout-header>
+  <n-scrollbar x-scrollable class="h-auto">
+    <n-layout-header :bordered="bordered" :style="styles" class="flex items-center">
+      <slot />
+      <div class="ml-auto" />
+      <HeaderActions />
+      <UserAvatar />
+    </n-layout-header>
+  </n-scrollbar>
 </template>
 
 <style scoped>

@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json --composite false",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky"
@@ -30,7 +31,7 @@
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
     "lodash-es": "^4.17.21",
-    "naive-ui": "^2.37.3",
+    "naive-ui": "^2.38.1",
     "typescript": "^5.2.2",
     "unocss": "^0.58.5",
     "unplugin-auto-import": "^0.17.5",

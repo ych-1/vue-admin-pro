@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlertFilled, AlertOutlined, CompressOutlined, ExpandOutlined } from '@vicons/antd'
+import { AlertFilled, AlertOutlined, CompressOutlined, ExpandOutlined, SettingOutlined } from '@vicons/antd'
 import { useFullscreen } from '@vueuse/core'
 import { useAppStore } from '@/stores/app.ts'
 
@@ -31,19 +31,36 @@ const list = computed<ActionItem[]>(() => [
       toggle()
     },
   },
+  {
+    key: 'setting',
+    title: '设置',
+    icon: SettingOutlined,
+    onClick: () => {
+    },
+  },
 ])
 </script>
 
 <template>
-  <n-flex>
-    <n-button v-for="item in list" :key="item.key" quaternary circle :focusable="false" @click="item.onClick">
-      <template #icon>
-        <n-icon :size="16" :component="item.icon" />
-      </template>
-    </n-button>
-  </n-flex>
+  <n-tooltip v-for="item in list" :key="item.key">
+    <template #trigger>
+      <n-button quaternary circle :focusable="false" class="action-button" @click="item.onClick">
+        <template #icon>
+          <n-icon :size="16" :component="item.icon" />
+        </template>
+      </n-button>
+    </template>
+    {{ item.title }}
+  </n-tooltip>
 </template>
 
 <style scoped>
+.action-button {
+  margin: 0 0.375rem;
+  color: var(--base-color);
+}
 
+.action-button:hover {
+  color: var(--base-color);
+}
 </style>
