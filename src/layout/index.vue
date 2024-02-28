@@ -1,33 +1,23 @@
-<script setup lang="ts">
-import {
-  AppMain,
-  Breadcrumb,
-  Footer,
-  Header,
-  Logo,
-  Menu,
-  MultiTab,
-  Sider,
-} from './components'
-import { useAppStore } from '@/stores/app.ts'
+<script setup lang='ts'>
+import { AppMain, Breadcrumb, Footer, Header, Logo, Menu, MultiTab, Settings, Sider } from './components'
+import { useAppStore } from '@/stores/app'
 
-const appStore = useAppStore()
-const { layout, collapsed } = storeToRefs(appStore)
+const { layout, inverted, collapsed, settings } = storeToRefs(useAppStore())
 </script>
 
 <template>
-  <n-layout embedded :native-scrollbar="false" class="h-screen" :has-sider="layout === 'side'">
+  <n-layout class="h-screen" embedded :native-scrollbar="false" :has-sider="layout === 'side'">
     <template v-if="layout === 'side'">
-      <Sider>
+      <Sider :inverted="inverted">
         <Logo :collapsed="collapsed" />
-        <Menu />
+        <Menu :inverted="inverted" mode="vertical" />
       </Sider>
     </template>
-    <template v-else-if="layout === 'top' || layout === 'mix'">
-      <Header>
+    <template v-if="layout === 'top' || layout === 'mix'">
+      <Header :inverted="inverted">
         <Logo />
         <Breadcrumb v-if="layout === 'mix'" v-model:collapsed="collapsed" />
-        <Menu v-if="layout === 'top'" mode="horizontal" />
+        <Menu v-if="layout === 'top'" mode="horizontal" :inverted="inverted" />
       </Header>
     </template>
     <n-layout embedded :native-scrollbar="false" :has-sider="layout === 'mix'">
@@ -36,11 +26,12 @@ const { layout, collapsed } = storeToRefs(appStore)
           <Breadcrumb v-model:collapsed="collapsed" />
         </Header>
       </template>
-      <template v-else-if=" layout === 'mix'">
+      <template v-if="layout === 'mix'">
         <Sider>
-          <Menu />
+          <Menu mode="vertical" />
         </Sider>
       </template>
+
       <AppMain>
         <template #prefix>
           <MultiTab />
@@ -48,8 +39,14 @@ const { layout, collapsed } = storeToRefs(appStore)
         <router-view />
         <template #suffix>
           <Footer />
+          <n-back-top />
         </template>
       </AppMain>
     </n-layout>
+    <Settings v-model:show="settings" />
   </n-layout>
 </template>
+
+<style>
+
+</style>

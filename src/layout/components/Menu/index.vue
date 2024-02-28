@@ -1,26 +1,18 @@
 <script lang="ts" setup>
-import type { Component } from 'vue'
-import { h } from 'vue'
-import { NIcon } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 import {
-  ClusterOutlined as BagOutlineIcon,
-  AntDesignOutlined as FishIcon,
-  AppstoreAddOutlined as PawIcon,
+  AmazonCircleFilled as BagOutlineIcon,
+  ExperimentFilled as FishIcon,
+  CarFilled as PawIcon,
 } from '@vicons/antd'
-import { useAppStore } from '@/stores/app.ts'
+import { renderIcon } from '@/helper/render-icon'
+import { useAppStore } from '@/stores/app'
 
 withDefaults(defineProps<{
-  mode?: 'vertical' | 'horizontal'
-  inverted?: boolean
+  mode?: 'horizontal' | 'vertical'
 }>(), {
   mode: 'vertical',
-  inverted: false,
 })
-
-function renderIcon(icon: Component) {
-  return () => h(NIcon, null, { default: () => h(icon) })
-}
 
 const menuOptions: MenuOption[] = [
   {
@@ -74,18 +66,20 @@ const menuOptions: MenuOption[] = [
   },
 ]
 
-const { siderCollapsedWidth } = storeToRefs(useAppStore())
+const defaultExpandedKeys = ['fish', 'braise']
+
+const { accordion, siderCollapsedWidth } = storeToRefs(useAppStore())
 </script>
 
 <template>
   <n-menu
-    :accordion="true"
-    :collapsed-width="siderCollapsedWidth"
-    :inverted="inverted"
-    :options="menuOptions"
     :mode="mode"
-    :root-indent="16"
-    :indent="24"
+    :collapsed-width="siderCollapsedWidth"
+    :accordion="accordion"
+    :options="menuOptions"
+    :default-expanded-keys="defaultExpandedKeys"
+    :indent="22"
+    :root-indent="20"
     :responsive="true"
   />
 </template>

@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export const Layout = () => import('@/layouts/index.vue')
+export const Layout = () => import('@/layout/index.vue')
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -19,6 +19,6 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/layouts/views/404.vue'),
+    component: () => import('@/layout/views/404.vue'),
   },
 ]

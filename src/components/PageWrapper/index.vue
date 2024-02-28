@@ -8,13 +8,13 @@ const props = withDefaults(defineProps<{
   cardProps?: CardProps
 }>(), {
   embedded: false,
-  padding: 8,
+  padding: 12,
 })
 
 const styles = computed<CSSProperties>(() => {
   return {
     padding: `${props.padding}px`,
-    minHeight: 'calc(100vh - 140px)',
+    minHeight: 'calc(100vh - 200px)',
   }
 })
 </script>

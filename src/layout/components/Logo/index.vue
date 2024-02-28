@@ -12,15 +12,13 @@ const props = withDefaults(defineProps<{
 
 const { siderWidth, siderCollapsedWidth, headerHeight } = storeToRefs(useAppStore())
 
-const styles = computed<CSSProperties>(() => {
+const style = computed<CSSProperties>(() => {
   const styles: CSSProperties = {
     width: `${props.collapsed ? siderCollapsedWidth.value : siderWidth.value}px`,
     height: `${headerHeight.value}px`,
     boxSizing: 'border-box',
     flexShrink: 0,
   }
-  // if (bordered.value && layout.value === 'side')
-  // styles.borderBottom = '1px solid var(--n-border-color)'
 
   return styles
 })
@@ -33,10 +31,7 @@ function to(path: string) {
 </script>
 
 <template>
-  <n-el
-    class="text-truncate flex items-center justify-center flex-shrink-0 cursor-pointer" :style="styles"
-    @cli.capture="to('/')"
-  >
+  <n-el class="text-truncate flex items-center justify-center flex-shrink-0 cursor-pointer" :style="style" @click="to('/')">
     <transition name="fade" mode="out-in">
       <div v-if="collapsed" class="flex items-center justify-center">
         <img v-if="logoUrl" :src="logoUrl" class="w-38px h-38px" alt="LOGO">

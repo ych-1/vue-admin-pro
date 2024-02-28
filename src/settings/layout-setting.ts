@@ -1,45 +1,56 @@
 import { useStorage } from '@vueuse/core'
+import type { AnimationType } from './animation'
 
-export const STORAGE_KEY_LAYOUT_SETTING = 'LAYOUT_SETTING'
+export const LAYOUT_SETTING_STORAGE_KEY = 'LAYOUT_SETTING'
 
 export interface LayoutSetting {
   layout: 'side' | 'top' | 'mix'
-  dark: boolean | 'auto'
-  bordered: boolean
   collapsed: boolean
-  showTrigger: boolean | 'bar' | 'arrow-circle'
+  inverted: boolean
+  bordered: boolean
+  dark: 'auto' | boolean
+  accordion: boolean
   siderWidth: number
   siderCollapsedWidth: number
+  showTrigger: boolean | 'arrow-circle' | 'bar'
   headerHeight: number
   headerFixed: boolean
-  contentMargin: number
-  tabsHeight: number
-  tabsFixed: boolean
+  logo: boolean
+  multiTabs: boolean
+  multiTabsHeight: number
+  multiTabsFixed: boolean
+  footer: boolean
   footerHeight: number
-  show: {
-    logo: boolean
-    setting: boolean
-    search: boolean
-    breadcrumb: boolean
-    tabs: boolean
-  }
+  breadcrumb: boolean
+  animation: AnimationType
+  primaryColor: string
+  radius: number
+  settings: boolean
 }
 
 export const defaultSetting: LayoutSetting = {
   layout: 'mix',
-  dark: false,
-  bordered: true,
   collapsed: false,
-  contentMargin: 12,
-  footerHeight: 40,
-  headerFixed: true,
+  inverted: true,
+  bordered: true,
+  dark: false,
+  accordion: true,
+  siderWidth: 220,
+  siderCollapsedWidth: 60,
   showTrigger: 'bar',
   headerHeight: 60,
-  show: { breadcrumb: true, logo: true, search: true, setting: true, tabs: true },
-  siderCollapsedWidth: 60,
-  siderWidth: 220,
-  tabsFixed: true,
-  tabsHeight: 40,
+  headerFixed: true,
+  logo: true,
+  multiTabs: true,
+  multiTabsHeight: 45,
+  multiTabsFixed: true,
+  footer: true,
+  footerHeight: 40,
+  breadcrumb: true,
+  animation: 'fadein',
+  primaryColor: '#18a058',
+  radius: 3,
+  settings: false,
 }
 
-export default useStorage(STORAGE_KEY_LAYOUT_SETTING, defaultSetting)
+export default useStorage<LayoutSetting>(LAYOUT_SETTING_STORAGE_KEY, defaultSetting)

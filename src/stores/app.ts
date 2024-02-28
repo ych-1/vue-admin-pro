@@ -1,25 +1,40 @@
-import { toReactive, useDark, useToggle } from '@vueuse/core'
 import type { GlobalThemeOverrides } from 'naive-ui'
 import { darkTheme, dateZhCN, useOsTheme, zhCN } from 'naive-ui'
-import type { LayoutSetting } from '@/settings/layout-setting.ts'
-import layoutSetting, { defaultSetting } from '@/settings/layout-setting.ts'
+import type { LayoutSetting } from '@/settings/layout-setting'
+import layoutSetting, { defaultSetting } from '@/settings/layout-setting'
+import naiveUiThemeOverrides from '@/settings/naive-ui-theme-overrides'
+import { calculateColors } from '@/helper/color'
 
 export const useAppStore = defineStore('app', () => {
-  const app = toReactive<LayoutSetting>(layoutSetting)
+  const app: LayoutSetting = toReactive(layoutSetting)
 
-  const osTheme = useOsTheme()
   const isDark = useDark()
   const toggleDark = useToggle(isDark)
+  const osTheme = useOsTheme()
 
   const theme = computed(() => {
     if (app.dark === 'auto')
       return osTheme.value === 'dark' ? darkTheme : null
     return app.dark ? darkTheme : null
   })
+
   const themeOverrides = computed<GlobalThemeOverrides>(() => {
-    return {}
+    const colors = {
+      ...calculateColors('primary', app.primaryColor),
+    }
+    naiveUiThemeOverrides.common = {
+      ...naiveUiThemeOverrides.common,
+      ...colors,
+      borderRadius: `${app.radius}px`,
+      borderRadiusSmall: `${app.radius * 0.8}px`,
+    }
+    return {
+      ...naiveUiThemeOverrides,
+    }
   })
+
   const locale = computed(() => zhCN)
+
   const dateLocale = computed(() => dateZhCN)
 
   const toggleTheme = () => {
@@ -30,28 +45,40 @@ export const useAppStore = defineStore('app', () => {
     Object.assign(app, defaultSetting)
   }
 
-  watch(() => app.headerFixed, (value) => {
-    if (!value)
-      app.tabsFixed = false
+  const copy = () => {
+    const { copy } = useClipboard()
+    copy(JSON.stringify(app, null, 2)).then(() => {
+      window.$message?.success('复制成功，请粘贴到 src/settings/layout-setting.ts 中', {
+        keepAliveOnHover: true,
+      })
+    })
+  }
+
+  watch(() => app.dark, () => {
+    toggleDark(theme.value === darkTheme)
+  }, {
+    immediate: true,
   })
 
-  watch(() => app.tabsFixed, (value) => {
+  watch(() => app.headerFixed, (value: boolean) => {
+    if (!value)
+      app.multiTabsFixed = false
+  })
+
+  watch(() => app.multiTabsFixed, (value: boolean) => {
     if (value)
       app.headerFixed = true
   })
 
-  watch(() => app.dark, () => {
-    toggleDark(theme.value === darkTheme)
-  }, { immediate: true })
-
   return {
     ...toRefs(app),
+    isDark,
     theme,
     themeOverrides,
     locale,
     dateLocale,
-    isDark,
     toggleTheme,
     reset,
+    copy,
   }
 })

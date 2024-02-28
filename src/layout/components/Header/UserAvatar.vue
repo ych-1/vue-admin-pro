@@ -32,6 +32,6 @@ const options = computed<DropdownOption[]>(() => [
 
 <template>
   <n-dropdown :options="options" show-arrow>
-    <n-avatar src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" circle class="mx-20px cursor-pointer flex-shrink-0" />
+    <n-avatar src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" circle class="mx-8px cursor-pointer flex-shrink-0" />
   </n-dropdown>
 </template>
