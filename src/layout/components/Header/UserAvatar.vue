@@ -1,22 +1,17 @@
 <script lang="ts" setup>
 import type { DropdownOption } from 'naive-ui'
-import {
-  EditOutlined,
-  LogoutOutlined,
-  UserOutlined,
-} from '@vicons/antd'
-import { renderIcon } from '@/helper/render-icon.ts'
+import { renderIcon } from '@/utils/render-icon.ts'
 
 const options = computed<DropdownOption[]>(() => [
   {
     label: '用户资料',
     key: 'profile',
-    icon: renderIcon(UserOutlined),
+    icon: renderIcon('i-carbon:user-avatar'),
   },
   {
     label: '编辑用户资料',
     key: 'editProfile',
-    icon: renderIcon(EditOutlined),
+    icon: renderIcon('i-carbon:edit'),
   },
   {
     type: 'divider',
@@ -25,7 +20,7 @@ const options = computed<DropdownOption[]>(() => [
   {
     label: '退出登录',
     key: 'logout',
-    icon: renderIcon(LogoutOutlined),
+    icon: renderIcon('i-carbon:logout'),
   },
 ])
 </script>

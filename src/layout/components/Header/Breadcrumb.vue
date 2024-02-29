@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@vicons/antd'
 import HeaderAction from './HeaderAction.vue'
 
 const collapsed = defineModel<boolean>('collapsed', {
@@ -8,7 +7,7 @@ const collapsed = defineModel<boolean>('collapsed', {
 </script>
 
 <template>
-  <HeaderAction :icon="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined" :size="20" :disabled="true" @click="collapsed = !collapsed" />
+  <HeaderAction :icon="collapsed ? 'i-carbon:text-indent-more' : 'i-carbon:text-indent-less'" :disabled="true" @click="collapsed = !collapsed" />
 </template>
 
 <style scoped></style>

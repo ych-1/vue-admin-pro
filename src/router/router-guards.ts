@@ -1,5 +1,5 @@
 import type { Router } from 'vue-router'
-import { APP_TITLE } from '@/helper/constants.ts'
+import { APP_TITLE } from '@/utils/constants.ts'
 
 export function createRouterGuards(router: Router) {
   router.beforeEach((to) => {

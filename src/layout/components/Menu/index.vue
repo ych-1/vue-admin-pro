@@ -1,11 +1,7 @@
 <script lang="ts" setup>
 import type { MenuOption } from 'naive-ui'
-import {
-  AmazonCircleFilled as BagOutlineIcon,
-  ExperimentFilled as FishIcon,
-  CarFilled as PawIcon,
-} from '@vicons/antd'
-import { renderIcon } from '@/helper/render-icon'
+
+import { renderIcon } from '@/utils/render-icon'
 import { useAppStore } from '@/stores/app'
 
 withDefaults(defineProps<{
@@ -18,7 +14,7 @@ const menuOptions: MenuOption[] = [
   {
     label: '鱼',
     key: 'fish',
-    icon: renderIcon(FishIcon),
+    icon: renderIcon('i-carbon:fish'),
     children: [
       {
         label: '红烧',
@@ -45,7 +41,7 @@ const menuOptions: MenuOption[] = [
   {
     label: '熊掌',
     key: 'bear-paw',
-    icon: renderIcon(PawIcon),
+    icon: renderIcon('i-carbon:bee'),
     children: [
       {
         label: '保护野生动物',
@@ -56,7 +52,7 @@ const menuOptions: MenuOption[] = [
   {
     label: '两个都要',
     key: 'both',
-    icon: renderIcon(BagOutlineIcon),
+    icon: renderIcon('i-carbon:basketball'),
     children: [
       {
         label: '鱼和熊掌不可兼得',

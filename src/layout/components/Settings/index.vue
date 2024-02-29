@@ -163,8 +163,8 @@ const list = computed<ItemType[]>(() => [
     value: siderWidth.value,
     type: 'number',
     props: {
-      max: 300,
-      min: 100,
+      max: 280,
+      min: 180,
       step: 5,
     },
   },
@@ -174,7 +174,7 @@ const list = computed<ItemType[]>(() => [
     value: siderCollapsedWidth.value,
     type: 'number',
     props: {
-      max: 100,
+      max: 80,
       min: 50,
       step: 1,
     },
@@ -198,7 +198,7 @@ const list = computed<ItemType[]>(() => [
     value: headerHeight.value,
     type: 'number',
     props: {
-      max: 100,
+      max: 80,
       min: 50,
       step: 1,
     },
@@ -220,7 +220,7 @@ const list = computed<ItemType[]>(() => [
     value: footerHeight.value,
     type: 'number',
     props: {
-      max: 60,
+      max: 50,
       min: 30,
       step: 1,
     },

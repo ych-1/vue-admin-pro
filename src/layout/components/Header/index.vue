@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { BellOutlined, CompressOutlined, ExpandOutlined, SettingOutlined } from '@vicons/antd'
 import UserAvatar from './UserAvatar.vue'
 import { useAppStore } from '@/stores/app.ts'
 import HeaderAction from '@/layout/components/Header/HeaderAction.vue'
@@ -26,10 +25,10 @@ const styles = computed<CSSProperties>(() => {
     <n-layout-header :bordered="bordered" :inverted="inverted" :style="styles" class="flex items-center">
       <slot />
       <div class="ml-auto" />
-      <HeaderAction title="消息" :icon="BellOutlined" :size="20" @click="toggle" />
-      <HeaderAction title="全屏" :icon="isFullscreen ? CompressOutlined : ExpandOutlined" @click="toggle" />
+      <HeaderAction title="消息" icon="i-carbon:notification" @click="toggle" />
+      <HeaderAction title="全屏" :icon="isFullscreen ? 'i-carbon:intent-request-scale-in' : 'i-carbon:intent-request-scale-out'" @click="toggle" />
       <UserAvatar />
-      <HeaderAction title="设置" :icon="SettingOutlined" :size="18" @click="settings = true" />
+      <HeaderAction title="设置" icon="i-carbon:settings" @click="settings = true" />
     </n-layout-header>
   </n-scrollbar>
 </template>

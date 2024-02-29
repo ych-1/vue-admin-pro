@@ -1,19 +1,13 @@
 <script setup lang="ts">
-import type { CSSProperties, Component } from 'vue'
+import type { CSSProperties } from 'vue'
 
-const { x, round } = withDefaults(defineProps<{
-  icon: Component
+withDefaults(defineProps<{
+  icon: string
   title?: string
   size?: number
   disabled?: boolean
-  x?: number
-  round?: boolean
-  badge?: number
 }>(), {
-  size: 16,
-  disabled: false,
-  x: 24,
-  round: false,
+  size: 18,
 })
 
 const emit = defineEmits(['click'])
@@ -21,14 +15,8 @@ const emit = defineEmits(['click'])
 const style = computed<CSSProperties>(() => {
   const styles: CSSProperties = {
     color: 'var(--base-color)',
-  }
-  if (round) {
-    styles.padding = `0`
-    styles.margin = `0 ${x}px`
-  }
-  else {
-    styles.height = `100%`
-    styles.borderRadius = 0
+    height: `100%`,
+    borderRadius: 0,
   }
   return styles
 })
@@ -37,10 +25,8 @@ const style = computed<CSSProperties>(() => {
 <template>
   <n-tooltip :disabled="disabled">
     <template #trigger>
-      <n-button quaternary :circle="round" :focusable="false" :style="style" @click="emit('click')">
-        <template #icon>
-          <n-icon :size="size" :component="icon" />
-        </template>
+      <n-button quaternary :focusable="false" :style="style" @click="emit('click')">
+        <Icon :name="icon" :size="size" />
       </n-button>
     </template>
     {{ title }}

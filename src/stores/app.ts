@@ -3,7 +3,7 @@ import { darkTheme, dateZhCN, useOsTheme, zhCN } from 'naive-ui'
 import type { LayoutSetting } from '@/settings/layout-setting'
 import layoutSetting, { defaultSetting } from '@/settings/layout-setting'
 import naiveUiThemeOverrides from '@/settings/naive-ui-theme-overrides'
-import { calculateColors } from '@/helper/color'
+import { calculateColors } from '@/utils/color'
 
 export const useAppStore = defineStore('app', () => {
   const app: LayoutSetting = toReactive(layoutSetting)

@@ -2,28 +2,52 @@ import {
   defineConfig,
   presetAttributify,
   presetIcons,
-  presetTypography,
   presetUno,
-  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
 export default defineConfig({
   shortcuts: [
-    // ...
+    ['wh-full', 'w-full h-full'],
+    ['f-c-c', 'flex items-center justify-center'],
+    ['text-ellipsis', 'truncate'],
   ],
   theme: {
-    colors: {},
+    colors: {
+      primary: 'var(--primary-color)',
+      primary_hover: 'var(--primary-color-hover)',
+      primary_pressed: 'var(--primary-color-pressed)',
+      primary_suppl: 'var(--primary-color-suppl)',
+      success: 'var(--success-color)',
+      success_hover: 'var(--success-color-hover)',
+      success_pressed: 'var(--success-color-pressed)',
+      success_suppl: 'var(--success-color-suppl)',
+      info: 'var(--info-color)',
+      info_hover: 'var(--info-color-hover)',
+      info_pressed: 'var(--info-color-pressed)',
+      info_suppl: 'var(--info-color-suppl)',
+      warning: 'var(--warning-color)',
+      warning_hover: 'var(--warning-color-hover)',
+      warning_pressed: 'var(--warning-color-pressed)',
+      warning_suppl: 'var(--warning-color-suppl)',
+      error: 'var(--error-color)',
+      error_hover: 'var(--error-color-hover)',
+      error_pressed: 'var(--error-color-pressed)',
+      error_suppl: 'var(--error-color-suppl)',
+    },
   },
   presets: [
     presetUno(),
     presetAttributify(),
-    presetIcons(),
-    presetTypography(),
-    presetWebFonts({
-      fonts: {
-        // ...
+    presetIcons({
+      warn: true,
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      },
+      collections: {
+
       },
     }),
   ],

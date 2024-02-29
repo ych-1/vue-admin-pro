@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { APP_TITLE } from '@/helper/constants.ts'
+import { APP_TITLE } from '@/utils/constants.ts'
 import logoUrl from '@/assets/logo.svg'
 import { useAppStore } from '@/stores/app.ts'
 

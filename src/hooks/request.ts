@@ -1,5 +1,5 @@
 import type { AxiosRequestConfig, Method } from 'axios'
-import { createApi } from '@/helper/request.ts'
+import { createApi } from '@/utils/request.ts'
 
 export function useRequest<T = any>(url: string, method: Method = 'GET', config?: AxiosRequestConfig): Promise<Response<T>> {
   return createApi<T>({ url, method, ...config })
