@@ -37,7 +37,9 @@ const NaiveProviderContent = defineComponent({
         <n-notification-provider>
           <n-message-provider>
             <NaiveProviderContent>
-              <slot name="default" />
+              <n-el>
+                <slot name="default" />
+              </n-el>
             </NaiveProviderContent>
           </n-message-provider>
         </n-notification-provider>

@@ -27,7 +27,9 @@ export const useAppStore = defineStore('app', () => {
       ...colors,
       borderRadius: `${app.radius}px`,
       borderRadiusSmall: `${app.radius * 0.8}px`,
+      invertedColor: app.invertedColor,
     }
+    console.log(naiveUiThemeOverrides)
     return {
       ...naiveUiThemeOverrides,
     }

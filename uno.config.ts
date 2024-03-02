@@ -10,7 +10,10 @@ import {
 export default defineConfig({
   shortcuts: [
     ['wh-full', 'w-full h-full'],
+    ['f-c', 'flex items-center '],
     ['f-c-c', 'flex items-center justify-center'],
+    ['f-c-sb', 'flex items-center justify-between'],
+    ['f-c-sa', 'flex items-center justify-around'],
     ['text-ellipsis', 'truncate'],
   ],
   theme: {
@@ -44,7 +47,9 @@ export default defineConfig({
       warn: true,
       extraProperties: {
         'display': 'inline-block',
-        'vertical-align': 'middle',
+        'line-height': '1em',
+        'text-align': 'center',
+        'position': 'relative',
       },
       collections: {
 

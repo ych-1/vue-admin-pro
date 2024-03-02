@@ -1,4 +1,4 @@
-import type { useDialog, useLoadingBar, useMessage, useNotification } from 'naive-ui'
+import type { useDialog, useLoadingBar, useMessage, useModal, useNotification } from 'naive-ui'
 import { merge } from 'lodash-es'
 
 export interface NaiveProvider {
@@ -6,6 +6,7 @@ export interface NaiveProvider {
   loadingBar: ReturnType<typeof useLoadingBar>
   dialog: ReturnType<typeof useDialog>
   notification: ReturnType<typeof useNotification>
+  modal: ReturnType<typeof useModal>
 }
 
 const naiveProvider: Partial<NaiveProvider> = {}

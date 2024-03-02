@@ -7,7 +7,7 @@ export interface ItemType {
   name?: string
   label?: string
   value?: any
-  type: 'switch' | 'select' | 'input' | 'color' | 'number' | 'checkbox' | 'group' | 'radio'
+  type: 'switch' | 'select' | 'input' | 'color' | 'number' | 'checkbox' | 'group' | 'radio' | 'custom-color'
   props?: any
 }
 
@@ -19,6 +19,7 @@ const {
   layout,
   collapsed,
   inverted,
+  invertedColor,
   bordered,
   dark,
   accordion,
@@ -68,6 +69,34 @@ const list = computed<ItemType[]>(() => [
         { label: '顶栏布局', value: 'top' },
         { label: '混合布局', value: 'mix' },
       ],
+    },
+  },
+  {
+    type: 'group',
+    label: '系统主题',
+  },
+  {
+    name: 'inverted',
+    label: '反转色模式',
+    value: inverted.value,
+    type: 'switch',
+  },
+  {
+    name: 'primaryColor',
+    label: '主题色',
+    value: primaryColor.value,
+    type: 'color',
+    props: {
+      showAlpha: false,
+    },
+  },
+  {
+    name: 'invertedColor',
+    label: '反转色',
+    value: invertedColor.value,
+    type: 'color',
+    props: {
+      showAlpha: false,
     },
   },
   {
@@ -123,23 +152,8 @@ const list = computed<ItemType[]>(() => [
     type: 'switch',
   },
   {
-    name: 'inverted',
-    label: '反转色模式',
-    value: inverted.value,
-    type: 'switch',
-  },
-  {
     type: 'group',
     label: '界面显示',
-  },
-  {
-    name: 'primaryColor',
-    label: '主题色',
-    value: primaryColor.value,
-    type: 'color',
-    props: {
-      showAlpha: false,
-    },
   },
   {
     name: 'radius',
@@ -244,7 +258,7 @@ const list = computed<ItemType[]>(() => [
 </script>
 
 <template>
-  <n-drawer v-model:show="show" :width="360" close-on-esc>
+  <n-drawer v-model:show="show" :width="320" close-on-esc>
     <n-drawer-content title="页面配置" :native-scrollbar="false" closable>
       <Item v-for="item in list" :key="item.name" v-bind="item" />
       <template #footer>

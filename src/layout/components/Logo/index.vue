@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
   collapsed: false,
 })
 
-const { siderWidth, siderCollapsedWidth, headerHeight } = storeToRefs(useAppStore())
+const { logo, siderWidth, siderCollapsedWidth, headerHeight } = storeToRefs(useAppStore())
 
 const style = computed<CSSProperties>(() => {
   const styles: CSSProperties = {
@@ -31,7 +31,7 @@ function to(path: string) {
 </script>
 
 <template>
-  <n-el class="text-truncate flex items-center justify-center flex-shrink-0 cursor-pointer" :style="style" @click="to('/')">
+  <n-el v-if="logo" class="text-truncate flex items-center justify-center flex-shrink-0 cursor-pointer" :style="style" @click="to('/')">
     <transition name="fade" mode="out-in">
       <div v-if="collapsed" class="flex items-center justify-center">
         <img v-if="logoUrl" :src="logoUrl" class="w-38px h-38px" alt="LOGO">

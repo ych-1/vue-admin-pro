@@ -17,6 +17,7 @@ const contentStyle = computed(() => {
   const styles: CSSProperties = {
     [multiTabsFixed.value ? 'height' : 'min-height']:
       `calc(100vh - ${headerHeight.value + (multiTabs.value ? multiTabsHeight.value : 0)}px)`,
+    userSelect: 'text',
   }
   return styles
 })

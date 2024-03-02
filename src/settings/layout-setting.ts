@@ -7,6 +7,7 @@ export interface LayoutSetting {
   layout: 'side' | 'top' | 'mix'
   collapsed: boolean
   inverted: boolean
+  invertedColor: string
   bordered: boolean
   dark: 'auto' | boolean
   accordion: boolean
@@ -15,6 +16,7 @@ export interface LayoutSetting {
   showTrigger: boolean | 'arrow-circle' | 'bar'
   headerHeight: number
   headerFixed: boolean
+  headerTheme: string
   logo: boolean
   multiTabs: boolean
   multiTabsHeight: number
@@ -32,6 +34,7 @@ export const defaultSetting: LayoutSetting = {
   layout: 'mix',
   collapsed: false,
   inverted: true,
+  invertedColor: '#001429',
   bordered: true,
   dark: false,
   accordion: true,
@@ -40,6 +43,7 @@ export const defaultSetting: LayoutSetting = {
   showTrigger: 'bar',
   headerHeight: 60,
   headerFixed: true,
+  headerTheme: '#fffff',
   logo: true,
   multiTabs: true,
   multiTabsHeight: 45,

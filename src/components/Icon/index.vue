@@ -1,24 +1,17 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
-
 const { color, size } = withDefaults(defineProps<{
   name: string
   color?: string
-  size?: number
+  size?: number | string
 }>(), {
   size: 16,
-})
-
-const style = computed<CSSProperties>(() => {
-  return {
-    color,
-    fontSize: `${size}px`,
-  }
 })
 </script>
 
 <template>
-  <i :class="name" :style="style" />
+  <n-icon :size="size" :color="color">
+    <i :class="name" />
+  </n-icon>
 </template>
 
 <style scoped>

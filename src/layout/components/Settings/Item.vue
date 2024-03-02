@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { CheckOutlined } from '@vicons/antd'
 import type { ItemType } from './index.vue'
 import { useAppStore } from '@/stores/app'
 
@@ -23,6 +24,13 @@ function onUpdateValue(value: any) {
     <n-divider title-placement="left">
       {{ label }}
     </n-divider>
+  </template>
+  <template v-else-if="type === 'custom-color'">
+    <n-flex align="center" justify="center">
+      <n-icon-wrapper v-for="item in props.options" :key="item" color="var(--n-icon-color)" :size="22" :border-radius="3" @click="onUpdateValue(item)">
+        <n-icon :size="16" :component="CheckOutlined" />
+      </n-icon-wrapper>
+    </n-flex>
   </template>
   <n-space v-else :wrap="false" :wrap-item="false" align="center" justify="space-between" class="item">
     <template v-if="label">

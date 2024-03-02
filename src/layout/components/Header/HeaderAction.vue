@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
+import type { CSSProperties, Component } from 'vue'
 
 withDefaults(defineProps<{
-  icon: string
+  icon: Component
   title?: string
   size?: number
   disabled?: boolean
+  placement?: 'top-start' | 'top' | 'top-end' | 'right-start' | 'right' | 'right-end' | 'bottom-start' | 'bottom' | 'bottom-end' | 'left-start' | 'left' | 'left-end'
 }>(), {
   size: 18,
 })
@@ -14,29 +15,24 @@ const emit = defineEmits(['click'])
 
 const style = computed<CSSProperties>(() => {
   const styles: CSSProperties = {
-    color: 'var(--base-color)',
+    color: 'var(--text-color)',
     height: `100%`,
     borderRadius: 0,
+    padding: '0 12px',
   }
   return styles
 })
 </script>
 
 <template>
-  <n-tooltip :disabled="disabled">
+  <n-tooltip :disabled="disabled" :placement="placement">
     <template #trigger>
       <n-button quaternary :focusable="false" :style="style" @click="emit('click')">
-        <Icon :name="icon" :size="size" />
+        <template #icon>
+          <n-icon :size="size" :component="icon" />
+        </template>
       </n-button>
     </template>
     {{ title }}
   </n-tooltip>
 </template>
-
-<style scoped>
-:deep(.n-badge .n-badge-sup) {
-  height: 14px;
-  line-height: 14px;
-  padding: 0 4px;
-}
-</style>

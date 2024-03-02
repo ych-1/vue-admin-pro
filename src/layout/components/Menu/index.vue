@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import type { MenuOption } from 'naive-ui'
 
-import { renderIcon } from '@/utils/render-icon'
+import type { CSSProperties } from 'vue'
+import { renderIcon } from '@/utils/render.ts'
 import { useAppStore } from '@/stores/app'
 
 withDefaults(defineProps<{
+  inverted?: boolean
   mode?: 'horizontal' | 'vertical'
 }>(), {
+  inverted: false,
   mode: 'vertical',
 })
 
@@ -42,12 +45,6 @@ const menuOptions: MenuOption[] = [
     label: '熊掌',
     key: 'bear-paw',
     icon: renderIcon('i-carbon:bee'),
-    children: [
-      {
-        label: '保护野生动物',
-        key: 'protect-wild-animals',
-      },
-    ],
   },
   {
     label: '两个都要',
@@ -65,10 +62,19 @@ const menuOptions: MenuOption[] = [
 const defaultExpandedKeys = ['fish', 'braise']
 
 const { accordion, siderCollapsedWidth } = storeToRefs(useAppStore())
+
+const style = computed<CSSProperties>(() => {
+  const styles: CSSProperties = {
+    '--n-menu-item-content--child-active': `var(--item-text-color)`,
+    '--n-item-text-color-active': `var(--item-text-color-active)`,
+  }
+  return styles
+})
 </script>
 
 <template>
   <n-menu
+    :inverted="inverted"
     :mode="mode"
     :collapsed-width="siderCollapsedWidth"
     :accordion="accordion"
@@ -77,5 +83,6 @@ const { accordion, siderCollapsedWidth } = storeToRefs(useAppStore())
     :indent="22"
     :root-indent="20"
     :responsive="true"
+    :style="style"
   />
 </template>
