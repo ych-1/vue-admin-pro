@@ -24,3 +24,7 @@ export function useDelete<T = any>(url: string, data?: any): Promise<Response<T>
 export function usePage<T = any>(url: string, params?: any): Promise<Response<Page<T>>> {
   return createApi<Page<T>>({ url, method: 'GET', params })
 }
+
+export function useApi<T = any>(config: AxiosRequestConfig): Promise<Response<T>> {
+  return createApi<T>(config)
+}

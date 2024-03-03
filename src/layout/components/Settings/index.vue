@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import Item from './Item.vue'
+import { NColorPicker, NDivider, NFlex, NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui'
+import type { Component } from 'vue'
+import DarkMode from './DarkMode.vue'
+import LayoutMode from './LayoutMode.vue'
 import { animationOptions } from '@/settings/animation'
 import { useAppStore } from '@/stores/app'
 
-export interface ItemType {
-  name?: string
-  label?: string
+export interface OptionType {
+  key?: string
   value?: any
-  type: 'switch' | 'select' | 'input' | 'color' | 'number' | 'checkbox' | 'group' | 'radio' | 'custom-color'
+  text?: string
+  type: 'switch' | 'select' | 'input' | 'color' | 'number' | 'divider'
   props?: any
 }
 
@@ -36,129 +39,146 @@ const {
   footerHeight,
   breadcrumb,
   animation,
-  primaryColor,
+  isDark,
   radius,
+  primaryColor,
+  infoColor,
+  successColor,
+  warningColor,
+  errorColor,
 } = storeToRefs(appStore)
 
-const list = computed<ItemType[]>(() => [
+const options = computed<OptionType[]>(() => [
   {
-    name: 'dark',
-    value: dark.value,
-    label: '暗色模式',
-    type: 'radio',
-    props: {
-      options: [
-        { label: '关闭', value: false },
-        { label: '开启', value: true },
-        { label: '自动', value: 'auto' },
-      ],
-    },
+    key: 'd2',
+    type: 'divider',
+    text: '系统主题',
   },
   {
-    type: 'group',
-    label: '布局模式',
-  },
-  {
-    name: 'layout',
-    label: '布局',
-    value: layout.value,
-    type: 'select',
-    props: {
-      options: [
-        { label: '侧边栏布局', value: 'side' },
-        { label: '顶栏布局', value: 'top' },
-        { label: '混合布局', value: 'mix' },
-      ],
-    },
-  },
-  {
-    type: 'group',
-    label: '系统主题',
-  },
-  {
-    name: 'inverted',
-    label: '反转色模式',
-    value: inverted.value,
+    key: 'inverted',
+    text: '反转色模式（亮色模式生效）',
+    value: inverted,
     type: 'switch',
+    props: {
+      disabled: isDark.value,
+    },
   },
   {
-    name: 'primaryColor',
-    label: '主题色',
-    value: primaryColor.value,
+    key: 'invertedColor',
+    text: '反转色',
+    value: invertedColor,
     type: 'color',
     props: {
       showAlpha: false,
     },
   },
   {
-    name: 'invertedColor',
-    label: '反转色',
-    value: invertedColor.value,
+    key: 'primaryColor',
+    text: '主题色',
+    value: primaryColor,
     type: 'color',
     props: {
       showAlpha: false,
     },
   },
   {
-    type: 'group',
-    label: '界面功能',
+    key: 'infoColor',
+    text: '信息色',
+    value: infoColor,
+    type: 'color',
+    props: {
+      showAlpha: false,
+    },
   },
   {
-    name: 'collapsed',
-    label: '侧边栏收缩',
-    value: collapsed.value,
+    key: 'successColor',
+    text: '成功色',
+    value: successColor,
+    type: 'color',
+    props: {
+      showAlpha: false,
+    },
+  },
+  {
+    key: 'warningColor',
+    text: '警告色',
+    value: warningColor,
+    type: 'color',
+    props: {
+      showAlpha: false,
+    },
+  },
+  {
+    key: 'errorColor',
+    text: '错误色',
+    value: errorColor,
+    type: 'color',
+    props: {
+      showAlpha: false,
+    },
+  },
+  {
+    key: 'd3',
+    type: 'divider',
+    text: '界面功能',
+  },
+  {
+    key: 'collapsed',
+    text: '侧边栏收缩',
+    value: collapsed,
     type: 'switch',
   },
   {
-    name: 'logo',
-    label: '显示 Logo',
-    value: logo.value,
+    key: 'logo',
+    text: '显示 Logo',
+    value: logo,
     type: 'switch',
   },
   {
-    name: 'breadcrumb',
-    label: '显示面包屑',
-    value: breadcrumb.value,
+    key: 'breadcrumb',
+    text: '显示面包屑',
+    value: breadcrumb,
     type: 'switch',
   },
   {
-    name: 'multiTabs',
-    label: '显示多标签',
-    value: multiTabs.value,
+    key: 'multiTabs',
+    text: '显示多标签',
+    value: multiTabs,
     type: 'switch',
   },
   {
-    name: 'footer',
-    label: '显示底栏',
-    value: footer.value,
+    key: 'footer',
+    text: '显示底栏',
+    value: footer,
     type: 'switch',
   },
   {
-    name: 'headerFixed',
-    label: '固定顶栏',
-    value: headerFixed.value,
+    key: 'headerFixed',
+    text: '固定顶栏',
+    value: headerFixed,
     type: 'switch',
   },
   {
-    name: 'multiTabsFixed',
-    label: '固定多标签',
-    value: multiTabsFixed.value,
+    key: 'multiTabsFixed',
+    text: '固定多标签',
+    value: multiTabsFixed,
     type: 'switch',
   },
   {
-    name: 'accordion',
-    label: '手风琴模式',
-    value: accordion.value,
+    key: 'accordion',
+    text: '手风琴模式',
+    value: accordion,
     type: 'switch',
   },
   {
-    type: 'group',
-    label: '界面显示',
+    key: 'd4',
+    type: 'divider',
+    text: '界面显示',
   },
   {
-    name: 'radius',
-    label: '圆角大小',
-    value: radius.value,
+    key: 'radius',
+    text: '圆角大小',
+    value: radius,
     type: 'number',
     props: {
       max: 20,
@@ -166,15 +186,15 @@ const list = computed<ItemType[]>(() => [
     },
   },
   {
-    name: 'bordered',
-    label: '边框',
-    value: bordered.value,
+    key: 'bordered',
+    text: '边框',
+    value: bordered,
     type: 'switch',
   },
   {
-    name: 'siderWidth',
-    label: '侧边栏宽度',
-    value: siderWidth.value,
+    key: 'siderWidth',
+    text: '侧边栏宽度',
+    value: siderWidth,
     type: 'number',
     props: {
       max: 280,
@@ -183,20 +203,20 @@ const list = computed<ItemType[]>(() => [
     },
   },
   {
-    name: 'siderCollapsedWidth',
-    label: '侧边栏收起宽度',
-    value: siderCollapsedWidth.value,
+    key: 'siderCollapsedWidth',
+    text: '侧边栏收起宽度',
+    value: siderCollapsedWidth,
     type: 'number',
     props: {
-      max: 80,
-      min: 50,
+      max: 60,
+      min: 40,
       step: 1,
     },
   },
   {
-    name: 'showTrigger',
-    label: '侧边栏触发器',
-    value: showTrigger.value,
+    key: 'showTrigger',
+    text: '侧边栏触发器',
+    value: showTrigger,
     type: 'select',
     props: {
       options: [
@@ -207,20 +227,20 @@ const list = computed<ItemType[]>(() => [
     },
   },
   {
-    name: 'headerHeight',
-    label: '顶栏高度',
-    value: headerHeight.value,
+    key: 'headerHeight',
+    text: '顶栏高度',
+    value: headerHeight,
     type: 'number',
     props: {
-      max: 80,
-      min: 50,
+      max: 60,
+      min: 45,
       step: 1,
     },
   },
   {
-    name: 'multiTabsHeight',
-    label: '多标签高度',
-    value: multiTabsHeight.value,
+    key: 'multiTabsHeight',
+    text: '多标签高度',
+    value: multiTabsHeight,
     type: 'number',
     props: {
       max: 50,
@@ -229,9 +249,9 @@ const list = computed<ItemType[]>(() => [
     },
   },
   {
-    name: 'footerHeight',
-    label: '底栏高度',
-    value: footerHeight.value,
+    key: 'footerHeight',
+    text: '底栏高度',
+    value: footerHeight,
     type: 'number',
     props: {
       max: 50,
@@ -240,13 +260,14 @@ const list = computed<ItemType[]>(() => [
     },
   },
   {
-    type: 'group',
-    label: '动画效果',
+    key: 'd5',
+    type: 'divider',
+    text: '动画效果',
   },
   {
-    name: 'animation',
-    label: '动画效果',
-    value: animation.value,
+    key: 'animation',
+    text: '动画效果',
+    value: animation,
     type: 'select',
     props: {
       options: [
@@ -255,22 +276,87 @@ const list = computed<ItemType[]>(() => [
     },
   },
 ])
+
+function onUpdateValue(key: string, value: any) {
+  if (key) {
+    appStore.$patch({
+      [key]: value,
+    })
+  }
+}
+
+const components: { [key: string]: Component } = {
+  divider: NDivider,
+  input: NInput,
+  switch: NSwitch,
+  select: NSelect,
+  color: NColorPicker,
+  number: NInputNumber,
+}
+
+function render(options: OptionType[]) {
+  return () => options.map((item: OptionType) => {
+    const key = item.key as string
+    if (!key)
+      return null
+    const value = unref(item.value)
+
+    if (item.type === 'divider' && item.text)
+      return h(NDivider, { titlePlacement: 'center' }, { default: () => item.text })
+
+    return h(NFlex, { align: 'center', justify: item.text ? 'space-between' : 'center' }, {
+      default: () => [
+        item.text && h('span', { class: 'flex-1' }, item.text),
+        components[item.type] && h(components[item.type], {
+          value,
+          ...item.props,
+          style: { maxWidth: '150px' },
+          onUpdateValue: (value: any) => onUpdateValue(key, value),
+        }),
+      ],
+    })
+  })
+}
 </script>
 
 <template>
   <n-drawer v-model:show="show" :width="320" close-on-esc>
     <n-drawer-content title="页面配置" :native-scrollbar="false" closable>
-      <Item v-for="item in list" :key="item.name" v-bind="item" />
+      <DarkMode v-model:value="dark" />
+      <LayoutMode v-model:value="layout" />
+      <component :is="render(options)" />
       <template #footer>
-        <n-flex>
+        <NFlex>
           <n-button secondary @click="appStore.reset">
             重置
           </n-button>
           <n-button strong type="primary" @click="appStore.copy">
             复制配置
           </n-button>
-        </n-flex>
+        </NFlex>
       </template>
     </n-drawer-content>
   </n-drawer>
 </template>
+
+<style scoped>
+:deep(.n-flex) {
+  padding: 5px 0;
+}
+
+:deep(.n-select) {
+  width: 140px;
+}
+
+:deep(.n-input-number) {
+  width: 100px;
+}
+
+:deep(.n-color-picker) {
+  width: 120px;
+}
+
+:deep(.n-divider:not(.n-divider--vertical):first-child) {
+  margin-top: 16px;
+}
+</style>

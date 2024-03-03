@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { MenuOption } from 'naive-ui'
-
-import type { CSSProperties } from 'vue'
+import { AppstoreOutlined, BankOutlined, CloseSquareOutlined } from '@vicons/antd'
 import { renderIcon } from '@/utils/render.ts'
 import { useAppStore } from '@/stores/app'
 
@@ -13,11 +12,11 @@ withDefaults(defineProps<{
   mode: 'vertical',
 })
 
-const menuOptions: MenuOption[] = [
+const options: MenuOption[] = [
   {
     label: '鱼',
     key: 'fish',
-    icon: renderIcon('i-carbon:fish'),
+    icon: renderIcon(AppstoreOutlined),
     children: [
       {
         label: '红烧',
@@ -44,12 +43,12 @@ const menuOptions: MenuOption[] = [
   {
     label: '熊掌',
     key: 'bear-paw',
-    icon: renderIcon('i-carbon:bee'),
+    icon: renderIcon(BankOutlined),
   },
   {
     label: '两个都要',
     key: 'both',
-    icon: renderIcon('i-carbon:basketball'),
+    icon: renderIcon(CloseSquareOutlined),
     children: [
       {
         label: '鱼和熊掌不可兼得',
@@ -63,13 +62,11 @@ const defaultExpandedKeys = ['fish', 'braise']
 
 const { accordion, siderCollapsedWidth } = storeToRefs(useAppStore())
 
-const style = computed<CSSProperties>(() => {
-  const styles: CSSProperties = {
-    '--n-menu-item-content--child-active': `var(--item-text-color)`,
-    '--n-item-text-color-active': `var(--item-text-color-active)`,
-  }
-  return styles
-})
+function renderLabel(option: MenuOption) {
+  return h('div', {}, {
+    default: () => option.label,
+  })
+}
 </script>
 
 <template>
@@ -78,11 +75,15 @@ const style = computed<CSSProperties>(() => {
     :mode="mode"
     :collapsed-width="siderCollapsedWidth"
     :accordion="accordion"
-    :options="menuOptions"
+    :options="options"
     :default-expanded-keys="defaultExpandedKeys"
     :indent="22"
     :root-indent="20"
     :responsive="true"
-    :style="style"
+    :render-label="renderLabel"
   />
 </template>
+
+<style scoped>
+
+</style>

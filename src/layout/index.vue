@@ -61,7 +61,3 @@ watch(isPad, (value) => {
     <Settings v-model:show="settings" />
   </n-layout>
 </template>
-
-<style>
-
-</style>

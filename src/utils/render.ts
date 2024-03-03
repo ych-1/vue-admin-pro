@@ -14,7 +14,7 @@ export function renderIcon(icon: string | Component) {
       h(icons[icon as keyof typeof icons]),
     })
   }
-  return () => h(NIcon, {}, { default: () => h(icon) })
+  return () => h(NIcon, null, { default: () => h(icon) })
 }
 
 export interface OperationOptions {

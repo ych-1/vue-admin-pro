@@ -1,2 +1,6 @@
 @import "normalize.css";
 @import "naive-ui.css";
+
+body {
+  overflow: hidden;
+}

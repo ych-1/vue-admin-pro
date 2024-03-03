@@ -7,4 +7,6 @@ export function setupStore(app: App<Element>) {
   app.use(pinia)
 }
 
+export * from './app.ts'
+export * from './user.ts'
 export default pinia

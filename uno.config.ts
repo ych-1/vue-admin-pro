@@ -47,9 +47,7 @@ export default defineConfig({
       warn: true,
       extraProperties: {
         'display': 'inline-block',
-        'line-height': '1em',
         'text-align': 'center',
-        'position': 'relative',
       },
       collections: {
 

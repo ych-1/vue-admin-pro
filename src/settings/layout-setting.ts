@@ -9,7 +9,7 @@ export interface LayoutSetting {
   inverted: boolean
   invertedColor: string
   bordered: boolean
-  dark: 'auto' | boolean
+  dark: 'auto' | 'true' | 'false'
   accordion: boolean
   siderWidth: number
   siderCollapsedWidth: number
@@ -25,9 +25,13 @@ export interface LayoutSetting {
   footerHeight: number
   breadcrumb: boolean
   animation: AnimationType
-  primaryColor: string
   radius: number
   settings: boolean
+  primaryColor: string
+  infoColor: string
+  successColor: string
+  warningColor: string
+  errorColor: string
 }
 
 export const defaultSetting: LayoutSetting = {
@@ -36,7 +40,7 @@ export const defaultSetting: LayoutSetting = {
   inverted: true,
   invertedColor: '#001429',
   bordered: true,
-  dark: false,
+  dark: 'auto',
   accordion: true,
   siderWidth: 220,
   siderCollapsedWidth: 60,
@@ -55,6 +59,10 @@ export const defaultSetting: LayoutSetting = {
   primaryColor: '#18a058',
   radius: 3,
   settings: false,
+  infoColor: '#1890ff',
+  successColor: '#52c41a',
+  warningColor: '#faad14',
+  errorColor: '#f5222d',
 }
 
 export default useStorage<LayoutSetting>(LAYOUT_SETTING_STORAGE_KEY, defaultSetting)

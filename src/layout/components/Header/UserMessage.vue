@@ -65,10 +65,14 @@ const todo = ref([
     time: randomDate(1),
   },
 ])
+const { isMobile } = useQueryBreakpoints()
+const width = computed<number>(() => {
+  return isMobile.value ? window.innerWidth * 0.8 : 320
+})
 </script>
 
 <template>
-  <n-popover trigger="click" scrollable :width="350">
+  <n-popover trigger="click" scrollable :width="width">
     <template #trigger>
       <n-button quaternary :focusable="false" class="h-full border-0 px-12px" :style="{ color: `var(--text-color)` }">
         <template #icon>

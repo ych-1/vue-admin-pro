@@ -15,12 +15,16 @@ export const useAppStore = defineStore('app', () => {
   const theme = computed(() => {
     if (app.dark === 'auto')
       return osTheme.value === 'dark' ? darkTheme : null
-    return app.dark ? darkTheme : null
+    return app.dark === 'true' ? darkTheme : null
   })
 
   const themeOverrides = computed<GlobalThemeOverrides>(() => {
     const colors = {
       ...calculateColors('primary', app.primaryColor),
+      ...calculateColors('info', app.infoColor),
+      ...calculateColors('success', app.successColor),
+      ...calculateColors('warning', app.warningColor),
+      ...calculateColors('error', app.errorColor),
     }
     naiveUiThemeOverrides.common = {
       ...naiveUiThemeOverrides.common,
@@ -29,7 +33,6 @@ export const useAppStore = defineStore('app', () => {
       borderRadiusSmall: `${app.radius * 0.8}px`,
       invertedColor: app.invertedColor,
     }
-    console.log(naiveUiThemeOverrides)
     return {
       ...naiveUiThemeOverrides,
     }
@@ -40,7 +43,7 @@ export const useAppStore = defineStore('app', () => {
   const dateLocale = computed(() => dateZhCN)
 
   const toggleTheme = () => {
-    app.dark = theme.value !== darkTheme
+    app.dark = theme.value === darkTheme ? 'false' : 'true'
   }
 
   const reset = () => {
