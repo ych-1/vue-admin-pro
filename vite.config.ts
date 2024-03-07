@@ -32,5 +32,12 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'https://mock.lingyu.org.cn/mock/65e9ac8c28bb96294803dc8c/vue-admin-pro',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
   },
 })

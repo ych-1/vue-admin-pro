@@ -13,7 +13,7 @@ const style = computed(() => {
 </script>
 
 <template>
-  <n-layout-footer v-if="footer" :style="style" class="flex items-center justify-center text-gray text-12px">
+  <n-layout-footer v-if="footer" :style="style" class="flex items-center justify-center text-12px text-gray">
     Copyright &copy; 2022 - 2024 YCH. All Rights Reserved. YCH 版权所有
   </n-layout-footer>
 </template>

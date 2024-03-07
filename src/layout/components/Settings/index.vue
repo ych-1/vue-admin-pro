@@ -39,7 +39,6 @@ const {
   footerHeight,
   breadcrumb,
   animation,
-  isDark,
   radius,
   primaryColor,
   infoColor,
@@ -59,9 +58,6 @@ const options = computed<OptionType[]>(() => [
     text: '反转色模式（亮色模式生效）',
     value: inverted,
     type: 'switch',
-    props: {
-      disabled: isDark.value,
-    },
   },
   {
     key: 'invertedColor',

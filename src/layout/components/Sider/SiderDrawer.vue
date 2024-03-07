@@ -12,7 +12,12 @@ const { siderWidth, inverted } = storeToRefs(useAppStore())
 <template>
   <n-drawer v-model:show="show" placement="left" :width="siderWidth">
     <n-layout has-sider>
-      <n-layout-sider :native-scrollbar="false" :inverted="inverted" :width="siderWidth" content-class="h-screen">
+      <n-layout-sider
+        :native-scrollbar="false"
+        :inverted="inverted"
+        :width="siderWidth"
+        content-class="h-screen"
+      >
         <slot />
       </n-layout-sider>
     </n-layout>

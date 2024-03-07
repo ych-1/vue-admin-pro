@@ -1,6 +1,44 @@
-@import "normalize.css";
-@import "naive-ui.css";
+@import 'normalize.css';
+@import 'naive-ui.css';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   overflow: hidden;
 }
+
+/* ------ 美化滚动条 start ------ */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-height);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-color);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background-color: var(--scrollbar-color-hover);
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  overflow: auto;
+  display: none;
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  display: block;
+}
+/*------ 美化滚动条 end ------*/

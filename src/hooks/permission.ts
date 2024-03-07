@@ -5,9 +5,8 @@ export function usePermission() {
   const permissions = computed<string[]>(() => userStore.permissions)
 
   const hasPermission = (permission: string | string[]) => {
-    console.log('permissions', permissions.value)
-    const _permissions = Array.isArray(permission) ? permission : [permission]
-    return _permissions.some(p => permissions.value.includes(p))
+    const arr = Array.isArray(permission) ? permission : [permission]
+    return arr.every(p => permissions.value.includes(p))
   }
 
   return {

@@ -74,14 +74,24 @@ const width = computed<number>(() => {
 <template>
   <n-popover trigger="click" scrollable :width="width">
     <template #trigger>
-      <n-button quaternary :focusable="false" class="h-full border-0 px-12px" :style="{ color: `var(--text-color)` }">
+      <n-button
+        quaternary
+        :focusable="false"
+        class="h-full border-0 px-12px"
+        :style="{ color: `var(--text-color)` }"
+      >
         <template #icon>
           <n-icon :size="18" :component="BellOutlined" />
         </template>
       </n-button>
     </template>
 
-    <n-tabs type="line" animated tab-class="f-c-c min-w-80px" justify-content="space-around">
+    <n-tabs
+      type="line"
+      animated
+      tab-class="f-c-c min-w-80px"
+      justify-content="space-around"
+    >
       <n-tab-pane name="通知">
         <n-list>
           <n-list-item v-for="item in notification" :key="item.title">
@@ -96,11 +106,7 @@ const width = computed<number>(() => {
       <n-tab-pane name="消息">
         <n-list>
           <n-list-item v-for="item in message" :key="item.title">
-            <n-thing :title="item.title" :content="item.content" :description="item.time">
-              <template #avatar>
-                <n-avatar :src="item.avatar" />
-              </template>
-            </n-thing>
+            <n-thing :title="item.title" :content="item.content" :description="item.time" />
           </n-list-item>
         </n-list>
       </n-tab-pane>

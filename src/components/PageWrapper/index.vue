@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<{
   padding: 12,
 })
 
-const styles = computed<CSSProperties>(() => {
+const style = computed<CSSProperties>(() => {
   return {
     padding: `${props.padding}px`,
     minHeight: 'calc(100vh - 200px)',
@@ -20,8 +20,13 @@ const styles = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <n-el :style="styles">
-    <n-card :embedded="embedded" :bordered="false" content-style="padding: 8px" v-bind="cardProps">
+  <n-el :style="style">
+    <n-card
+      :embedded="embedded"
+      :bordered="false"
+      content-style="padding: 8px"
+      v-bind="cardProps"
+    >
       <slot />
     </n-card>
   </n-el>

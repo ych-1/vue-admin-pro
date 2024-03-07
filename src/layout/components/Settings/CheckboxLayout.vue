@@ -7,24 +7,24 @@ defineProps<{
 
 <template>
   <n-el
-    class="h-64px w-64px p-1 cursor-pointer rounded box-border"
+    class="box-border h-64px w-64px cursor-pointer rounded p-1"
     :style="{ boxShadow: `var(--box-shadow-1)` }"
     :class="{ 'border-3 border-solid border-primary shadow-none!': checked }"
   >
-    <div v-if="mode === 'side'" class="h-full flex gap-4px box-border rounded overflow-hidden">
-      <div class="w-14px h-full" :style="{ backgroundColor: 'var(--primary-color)' }" />
-      <div class="flex-1 flex flex-col gap-4px">
+    <div v-if="mode === 'side'" class="box-border h-full flex gap-4px overflow-hidden rounded">
+      <div class="h-full w-14px" :style="{ backgroundColor: 'var(--primary-color)' }" />
+      <div class="flex flex-1 flex-col gap-4px">
         <div class="h-14px" :style="{ backgroundColor: 'var(--primary-color)' }" />
         <div class="flex-1" :style="{ backgroundColor: 'var(--primary-color)' }" />
       </div>
     </div>
-    <div v-else-if="mode === 'top'" class="h-full flex flex-col gap-4px box-border rounded overflow-hidden">
+    <div v-else-if="mode === 'top'" class="box-border h-full flex flex-col gap-4px overflow-hidden rounded">
       <div class="h-14px w-full" :style="{ backgroundColor: 'var(--primary-color)' }" />
       <div class="flex-1" :style="{ backgroundColor: 'var(--primary-color)' }" />
     </div>
-    <div v-else-if="mode === 'mix'" class="h-full flex flex-col gap-4px box-border rounded overflow-hidden">
+    <div v-else-if="mode === 'mix'" class="box-border h-full flex flex-col gap-4px overflow-hidden rounded">
       <div class="h-14px w-full" :style="{ backgroundColor: 'var(--primary-color)' }" />
-      <div class="flex-1 flex gap-4px">
+      <div class="flex flex-1 gap-4px">
         <div class="w-14px" :style="{ backgroundColor: 'var(--primary-color)' }" />
         <div class="flex-1" :style="{ backgroundColor: 'var(--primary-color)' }" />
       </div>

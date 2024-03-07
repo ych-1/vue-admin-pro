@@ -31,17 +31,32 @@ function to(path: string) {
 </script>
 
 <template>
-  <n-el v-if="logo" class="text-truncate flex items-center justify-center flex-shrink-0 cursor-pointer" :style="style" @click="to('/')">
+  <n-el
+    v-if="logo"
+    class="flex flex-shrink-0 cursor-pointer items-center justify-center text-truncate"
+    :style="style"
+    @click="to('/')"
+  >
     <transition name="fade" mode="out-in">
       <div v-if="collapsed" class="flex items-center justify-center">
-        <img v-if="logoUrl" :src="logoUrl" class="w-38px h-38px" alt="LOGO">
-        <h1 v-else class="font-600 text-16px v-middle ml-12px">
+        <img
+          v-if="logoUrl"
+          :src="logoUrl"
+          class="h-38px w-38px"
+          alt="LOGO"
+        >
+        <h1 v-else class="ml-12px v-middle text-16px font-600">
           {{ APP_TITLE }}
         </h1>
       </div>
       <div v-else class="flex items-center justify-center">
-        <img v-if="logoUrl" :src="logoUrl" class="w-32px h-32px" alt="LOGO">
-        <h1 class="font-600 text-16px v-middle ml-12px">
+        <img
+          v-if="logoUrl"
+          :src="logoUrl"
+          class="h-32px w-32px"
+          alt="LOGO"
+        >
+        <h1 class="ml-12px v-middle text-16px font-600">
           {{ APP_TITLE }}
         </h1>
       </div>

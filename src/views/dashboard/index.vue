@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AccountBookFilled } from '@vicons/antd'
 import { renderOperation } from '@/utils/render.ts'
 
 function operation() {
@@ -71,6 +72,59 @@ function operation() {
     </n-flex>
 
     <component :is="operation" />
+
+    <n-flex>
+      <n-float-button position="relative" type="primary" menu-trigger="hover">
+        <n-icon>
+          <AccountBookFilled />
+        </n-icon>
+        <template #menu>
+          <n-float-button shape="square" type="primary">
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+          <n-float-button>
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+          <n-float-button>
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+        </template>
+      </n-float-button>
+      <n-float-button position="relative" type="primary" menu-trigger="click">
+        <n-icon>
+          <AccountBookFilled />
+        </n-icon>
+        <template #menu>
+          <n-float-button shape="square" type="primary">
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+          <n-float-button>
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+          <n-float-button>
+            <n-icon>
+              <AccountBookFilled />
+            </n-icon>
+          </n-float-button>
+        </template>
+      </n-float-button>
+    </n-flex>
+
+    <div class="scrollbar h-200px w-200px overflow-auto bg-info">
+      <div class="h-400px">
+        滚动条
+      </div>
+    </div>
 
     <div v-for="i in 20" :key="i" class="h-50px color-primary_pressed">
       占位{{ i }}

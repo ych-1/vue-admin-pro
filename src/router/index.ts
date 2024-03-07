@@ -1,12 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import type { App } from 'vue'
-import { routes } from './routes.ts'
+import { basicRoutes } from './routes.ts'
 import { createRouterGuards } from '@/router/router-guards.ts'
+import { IS_HASH_MODE } from '@/utils/constants.ts'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: IS_HASH_MODE ? createWebHashHistory() : createWebHistory(),
   routes: [
-    ...routes,
+    ...basicRoutes,
   ],
 })
 

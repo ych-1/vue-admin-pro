@@ -27,7 +27,12 @@ const style = computed<CSSProperties>(() => {
 <template>
   <n-tooltip :disabled="disabled" :placement="placement">
     <template #trigger>
-      <n-button quaternary :focusable="false" :style="style" @click="emit('click')">
+      <n-button
+        quaternary
+        :focusable="false"
+        :style="style"
+        @click="emit('click')"
+      >
         <template #icon>
           <n-icon :size="size" :component="icon" />
         </template>

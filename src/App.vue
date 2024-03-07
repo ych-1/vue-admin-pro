@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { NThemeEditor } from 'naive-ui'
 import { useAppStore } from '@/stores'
 
 const { theme, locale, dateLocale, themeOverrides } = storeToRefs(useAppStore())
@@ -15,11 +14,9 @@ const { theme, locale, dateLocale, themeOverrides } = storeToRefs(useAppStore())
     :theme-overrides="themeOverrides"
   >
     <n-global-style />
-    <NThemeEditor>
-      <app-provider>
-        <router-view />
-      </app-provider>
-    </NThemeEditor>
+    <app-provider>
+      <router-view />
+    </app-provider>
   </n-config-provider>
 </template>
 

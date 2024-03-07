@@ -13,7 +13,12 @@ watch(isPad, (value) => {
 </script>
 
 <template>
-  <n-layout class="h-screen select-none" embedded :native-scrollbar="false" :has-sider="layout === 'side'">
+  <n-layout
+    class="h-screen select-none"
+    embedded
+    :native-scrollbar="false"
+    :has-sider="layout === 'side'"
+  >
     <template v-if="layout === 'side' && !isMobile">
       <Sider :inverted="inverted">
         <Logo :collapsed="collapsed" />
@@ -21,7 +26,7 @@ watch(isPad, (value) => {
       </Sider>
     </template>
     <template v-if="layout === 'top' || layout === 'mix'">
-      <Header :inverted="inverted">
+      <Header :inverted="inverted && !isMobile">
         <Logo v-if="!isMobile" />
         <Hamburger v-if="layout === 'mix' || isMobile" v-model:collapsed="collapsed" />
         <Breadcrumb />

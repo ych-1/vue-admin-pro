@@ -19,7 +19,17 @@ const style = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <n-layout-sider v-model:collapsed="collapsed" :style="style" :inverted="inverted" :native-scrollbar="false" :width="siderWidth" :collapsed-width="siderCollapsedWidth" :show-trigger="showTrigger" :bordered="bordered" collapse-mode="width">
+  <n-layout-sider
+    v-model:collapsed="collapsed"
+    :style="style"
+    :inverted="inverted"
+    :native-scrollbar="false"
+    :width="siderWidth"
+    :collapsed-width="siderCollapsedWidth"
+    :show-trigger="showTrigger"
+    :bordered="bordered"
+    collapse-mode="width"
+  >
     <slot name="default" />
   </n-layout-sider>
 </template>

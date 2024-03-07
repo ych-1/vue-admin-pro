@@ -37,14 +37,24 @@ const styles = computed<CSSProperties>(() => {
 
 <template>
   <n-scrollbar x-scrollable>
-    <n-layout-header :bordered="bordered" :inverted="inverted" :style="styles" class="flex items-center">
+    <n-layout-header
+      :bordered="bordered"
+      :inverted="inverted"
+      :style="styles"
+      class="flex items-center"
+    >
       <slot />
       <div class="ml-auto" />
       <UserMessage />
       <HeaderAction title="黑暗模式" :icon="isDark ? BulbTwotone : BulbOutlined" @click="appStore.toggleTheme" />
       <HeaderAction title="全屏" :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
       <UserAvatar />
-      <HeaderAction title="设置" :icon="SettingOutlined" placement="left" @click="settings = true" />
+      <HeaderAction
+        title="设置"
+        :icon="SettingOutlined"
+        placement="left"
+        @click="settings = true"
+      />
     </n-layout-header>
   </n-scrollbar>
 </template>
